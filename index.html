@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -184,15 +183,6 @@
         .keep-warn p:last-child { margin-bottom: 0; }
         .keep-warn .kw-todo { background: #fef3c7; border-radius: 8px; padding: 8px 10px; margin-top: 8px; }
 
-        /* 총괄 화면 - 그룹별 계정 표시 */
-        .acct-box { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
-        .acct-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-        .acct-tag { font-size: 10px; font-weight: 800; color: #7c3aed; background: #f5f3ff; border: 1px solid #ddd6fe; padding: 1px 6px; border-radius: 4px; flex-shrink: 0; }
-        .acct-mail { font-size: 12px; color: #475569; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
-        .acct-none { font-size: 12px; color: #cbd5e1; }
-        .acct-copy { font-size: 10px; font-weight: 700; color: #64748b; background: #f8fafc; border: 1px solid #e2e8f0; padding: 1px 7px; border-radius: 4px; cursor: pointer; flex-shrink: 0; }
-        .acct-copy:hover { background: #eef2f7; color: #334155; }
-
         /* 개인정보 처리 안내 */
         .privacy-box { background: #fff; border-radius: 16px; border: 2px solid #e2e8f0; overflow: hidden; }
         .privacy-box > summary { list-style: none; cursor: pointer; padding: 16px 20px; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; color: #334155; }
@@ -216,7 +206,7 @@
     </style>
 </head>
 <body class="relative">
-    <div id="super-admin-trigger" class="fixed bottom-2 right-2 text-[10px] text-gray-400 opacity-60 z-50 cursor-pointer hover:opacity-100 transition-opacity p-2">만든이 © 2026 최창훈</div>
+    <div class="fixed bottom-2 right-2 text-[10px] text-gray-400 opacity-60 z-50 p-2">만든이 © 2026 최창훈</div>
 
     <div id="app" class="max-w-5xl mx-auto min-h-screen p-4 flex flex-col justify-center w-full">
         
@@ -248,12 +238,6 @@
                     <textarea id="su-config" rows="9" spellcheck="false" placeholder="여기에 붙여넣으세요"></textarea>
                 </div></div>
 
-                <div class="su-step"><span class="su-n">4</span><div class="su-b">
-                    <b>총괄 관리자로 쓸 구글 계정</b>을 적습니다.
-                    학교 전체 그룹을 보고 지울 수 있는 계정입니다.
-                    <input type="text" id="su-emails" placeholder="담당자@example.com (여러 명이면 쉼표로 구분)">
-                </div></div>
-
                 <div id="su-msg" class="su-msg" style="display:none"></div>
                 <button class="su-go" onclick="setupCheck()">🔍 설정 확인하기</button>
             </div>
@@ -262,11 +246,10 @@
             <div id="su-result" class="su-card hidden" style="margin-top:14px">
                 <div class="su-ok">✅ 설정을 확인했습니다</div>
 
-                <div class="su-step"><span class="su-n">5</span><div class="su-b">
-                    <b>Firebase 콘솔에서 세 가지를 켜 주세요.</b>
+                <div class="su-step"><span class="su-n">4</span><div class="su-b">
+                    <b>Firebase 콘솔에서 두 가지를 켜 주세요.</b>
                     <ul class="su-list">
                         <li><b>Authentication</b> → 시작하기 → <b>이메일/비밀번호</b> 사용 설정</li>
-                        <li>같은 화면에서 <b>Google</b> 사용 설정 (총괄 관리자 로그인용)</li>
                         <li><b>Firestore Database</b> → 데이터베이스 만들기 → 위치 <code>asia-northeast3</code></li>
                     </ul>
                     <div class="su-links">
@@ -275,7 +258,7 @@
                     </div>
                 </div></div>
 
-                <div class="su-step"><span class="su-n">6</span><div class="su-b">
+                <div class="su-step"><span class="su-n">5</span><div class="su-b">
                     <b>보안 규칙을 붙여넣습니다.</b> 아래 버튼으로 복사해
                     Firestore → [규칙] 탭에 통째로 붙여넣고 <b>게시</b>하세요.
                     <div class="su-links">
@@ -285,13 +268,13 @@
                     <div class="su-note">규칙을 게시하지 않으면 자료가 누구에게나 열립니다. 꼭 해주세요.</div>
                 </div></div>
 
-                <div class="su-step"><span class="su-n">7</span><div class="su-b">
+                <div class="su-step"><span class="su-n">6</span><div class="su-b">
                     <b>설정이 끝난 파일을 내려받아 웹에 올립니다.</b>
                     아래 버튼을 누르면 위 내용이 모두 들어간 <code>index.html</code>이 저장됩니다.
                     <b>파일을 편집기로 열어 고치실 필요가 없습니다.</b>
                     <button class="su-dl" onclick="downloadConfigured()">⬇ 설정이 끝난 index.html 내려받기</button>
-                    <div class="su-note">올리신 뒤 Authentication → 설정 → <b>승인된 도메인</b>에
-                        그 주소를 추가해야 구글 로그인이 됩니다.</div>
+                    <div class="su-note">받으신 <code>setup.html</code>은 보관만 하시고,
+                        웹에는 <b>새로 내려받은 <code>index.html</code></b>을 올려 주세요.</div>
                 </div></div>
             </div>
 
@@ -326,7 +309,7 @@
                 <button onclick="showScreen('screen-admin-menu')" class="role-card admin">
                     <div class="rc-icon">👑</div>
                     <div class="rc-body">
-                        <h3>관리자로 둘러보기</h3>
+                        <h3>담당자(관리자)</h3>
                         <p>명단 관리·전체 현황·엑셀 내려받기</p>
                     </div>
                     <div class="rc-arrow">›</div>
@@ -346,7 +329,7 @@
                 <h4>사용 순서</h4>
                 <div class="step-row">
                     <div class="step-num">1</div>
-                    <div class="step-text"><strong>담당자</strong>가 학교 계정에 설치하고 비밀번호를 정합니다</div>
+                    <div class="step-text"><strong>담당자</strong>가 그룹을 만들고 비밀번호를 정합니다</div>
                 </div>
                 <div class="step-row">
                     <div class="step-num">2</div>
@@ -365,7 +348,7 @@
             <!-- 신뢰 뱃지 -->
             <div class="trust-row">
                 <div class="trust-chip">🔒 데이터 실시간 저장</div>
-                <div class="trust-chip">💻 설치 없이 사용</div>
+                <div class="trust-chip">🏫 우리 학교 계정에 저장</div>
                 <div class="trust-chip">✅ 무료 서비스</div>
             </div>
 
@@ -374,23 +357,34 @@
                 <summary>🛡️ 개인정보 처리 안내</summary>
                 <div class="privacy-body">
                     <dl>
-                        <dt>수집하는 항목</dt>
+                        <dt>이 프로그램은 어디에 있나요</dt>
+                        <dd>
+                            이 주소의 프로그램은 <b>우리 학교가 직접 설치해 운영</b>합니다.
+                            입력하신 자료는 <b>학교가 만든 Firebase 계정에만</b> 저장되며,
+                            프로그램을 만든 사람에게는 전송되지 않고 그 사람은 자료를 볼 수도 없습니다.
+                            자료의 관리 책임은 학교에 있습니다.
+                        </dd>
+
+                        <dt>받지 않는 것</dt>
+                        <dd>
+                            <b>이름·이메일 주소를 받지 않습니다.</b> 명단은 '1학년 1반'처럼 담당으로만 관리하며,
+                            로그인에도 이메일을 쓰지 않습니다.
+                            주민등록번호·연락처·계좌번호·카드번호도 받지 않습니다.<br>
+                            즉 <b>여기에 저장되는 자료만으로는 개인을 특정할 수 없습니다.</b>
+                        </dd>
+
+                        <dt>저장되는 것</dt>
                         <dd>
                             · 그룹: 그룹명, 접속용 비밀번호<br>
                             · 교원: 담당(학년·반 등), 본인 확인용 비밀번호<br>
-                            · 정산 자료: 지출 항목명, 금액, 분류, 입력 일시<br><br>
-                            <b>이름·이메일 주소를 수집하지 않습니다.</b> 명단은 '1학년 1반'처럼 담당으로만 관리하며,
-                            로그인에도 이메일을 쓰지 않습니다. 주민등록번호·연락처·계좌번호·카드번호도 수집하지 않습니다.<br>
-                            즉 <b>이 서비스에 저장되는 자료만으로는 개인을 특정할 수 없습니다.</b>
+                            · 정산 자료: 지출 항목명, 금액, 분류, 입력 일시<br>
+                            자율연수비 집행 현황 확인과 정산 결과 엑셀 산출에만 사용합니다.
                         </dd>
-
-                        <dt>이용 목적</dt>
-                        <dd>자율연수비 집행 현황 확인과 정산 결과 엑셀 산출에만 사용하며, <b>광고·마케팅 목적으로 사용하지 않습니다.</b></dd>
 
                         <dt>누가 볼 수 있나요</dt>
                         <dd>
-                            명단 화면에는 <b>담당(학년·반)만 표시</b>되며, 지출 내역은 본인이 정한 비밀번호를 입력해야 열립니다.
-                            다른 학교(그룹)의 자료는 서로 볼 수 없습니다.
+                            명단 화면에는 <b>담당(학년·반)만 표시</b>되며, 각자의 지출 내역은 본인이 정한
+                            비밀번호를 입력해야 열립니다. 학교 담당자(관리자)는 정산을 위해 전체 현황을 봅니다.
                             이 비밀번호는 다른 곳에서 쓰는 것을 그대로 사용하지 마시고,
                             지출 항목명에는 알려지길 원치 않는 내용을 적지 말아 주세요.
                         </dd>
@@ -401,29 +395,36 @@
                             · 이전 국가: <b>미국</b> 등 Google이 운영하는 데이터센터 소재 국가<br>
                             · 이전 시기·방법: 서비스 이용 시점에 <b>정보통신망을 통해 전송</b><br>
                             · 이전 항목: 그룹명, 담당(학년·반), 접속용·본인 확인용 비밀번호, 지출 내역<br>
-                            · 이용 목적 및 보유 기간: 자료의 저장·조회, 학년도 종료 후 삭제<br>
-                            · 거부 방법과 효과: 이 서비스를 이용하지 않으시면 되며,
-                            이 경우 기존의 종이·엑셀 방식으로 정산하실 수 있습니다.
+                            · 이용 목적 및 보유 기간: 자료의 저장·조회, 학교가 삭제할 때까지<br>
+                            · 거부 방법과 효과: 이 프로그램을 이용하지 않으시면 되며,
+                            이 경우 기존의 종이·엑셀 방식으로 정산하실 수 있습니다.<br>
+                            전송 구간은 암호화(HTTPS)되며, 정산 업무 외의 목적으로 <b>제3자에게 제공하지 않습니다.</b>
                         </dd>
 
-                        <dt>보관 장소</dt>
-                        <dd>Google Firebase(Firestore·Authentication)에 저장되며, 전송 구간은 암호화(HTTPS)됩니다. 서비스 운영 외의 목적으로 <b>제3자에게 제공하지 않습니다.</b></dd>
-
-                        <dt>보관 기간 및 파기</dt>
-                        <dd>해당 <b>학년도 종료(다음 해 3월) 이후</b> 지난 학년도 자료로 분류되어 삭제될 수 있습니다. 필요한 자료는 학년도가 끝나기 전에 <b>엑셀 다운로드</b>로 보관해 주세요.</dd>
+                        <dt>보관 기간과 파기</dt>
+                        <dd>
+                            자료의 주인은 학교이므로 <b>정해진 만료일이 없습니다.</b>
+                            학년도를 마무리할 때 담당자가 관리자 화면에서 <b>[🗑 그룹 삭제]</b>를 누르면
+                            명단과 모든 지출 내역이 함께 지워집니다.
+                            Firebase 프로젝트 자체를 삭제하면 접속 계정까지 남김없이 정리됩니다.
+                            <b>지우기 전에 엑셀로 내려받아</b> 보관해 주세요.
+                        </dd>
 
                         <dt>열람·수정·삭제</dt>
-                        <dd>지출 내역은 기록의 신뢰성을 위해 <b>입력 후 수정·삭제할 수 없습니다.</b> 잘못 입력하신 경우 관리자에게 알려 주세요. 명단에서 본인 정보의 삭제를 원하시면 관리자에게 요청하실 수 있으며, 그룹 전체 자료의 삭제는 시스템 관리자에게 요청해 처리합니다.</dd>
+                        <dd>
+                            지출 내역은 기록의 신뢰성을 위해 <b>입력 후 수정·삭제할 수 없습니다.</b>
+                            잘못 입력하신 경우와, 본인 자료의 열람·정정·삭제를 원하시는 경우에는
+                            <b>학교 담당자</b>에게 말씀해 주세요.
+                        </dd>
 
                         <dt>브라우저 저장</dt>
                         <dd>접속 상태 유지를 위해 최소한의 정보만 브라우저에 임시 저장하며, <b>브라우저 탭을 닫으면 사라집니다.</b> 광고 추적 목적의 쿠키는 사용하지 않습니다.</dd>
                     </dl>
 
                     <p class="pv-foot">
-                        본 서비스는 개인이 무상으로 제공하는 학교 업무 지원 도구입니다.
-                        학교에서 활용하실 때는 소속 기관의 개인정보 보호 지침에 따라
-                        수집 항목과 보관 방법을 확인하신 뒤 사용해 주시기 바랍니다.
-                        문의: 만든이 최창훈
+                        이 프로그램은 학교 업무를 돕기 위해 개인이 무상으로 공개한 도구이며,
+                        설치·운영·자료 관리는 <b>우리 학교가 직접</b> 합니다.
+                        자료에 관한 문의는 학교 담당자에게 해 주세요.
                     </p>
                 </div>
             </details>
@@ -445,7 +446,7 @@
         <div id="screen-admin-menu" class="hidden max-w-md w-full mx-auto space-y-4 text-center">
             <h2 class="text-2xl font-bold mb-6">관리자 메뉴</h2>
             <button onclick="showScreen('screen-admin-start')" class="btn-primary w-full py-4">✨ 새로운 그룹 만들기</button>
-            <button onclick="showScreen('screen-admin-login')" class="bg-gray-800 text-white w-full py-4 rounded-lg font-bold hover:bg-gray-700">🔒 체험용 그룹 관리 (로그인)</button>
+            <button onclick="showScreen('screen-admin-login')" class="bg-gray-800 text-white w-full py-4 rounded-lg font-bold hover:bg-gray-700">🔒 관리자 로그인</button>
             <button onclick="showScreen('screen-home')" class="w-full text-gray-500 py-2 mt-4 hover:underline">뒤로가기</button>
         </div>
 
@@ -498,13 +499,6 @@
             <button onclick="showScreen('screen-admin-menu')" class="w-full text-gray-500 py-2 hover:underline">뒤로가기</button>
         </div>
 
-        <div id="screen-group-select" class="hidden max-w-md w-full mx-auto space-y-4">
-            <h2 class="text-2xl font-bold mb-1">그룹 선택</h2>
-            <p class="text-sm text-gray-500 mb-2">관리 중인 그룹이 여러 개입니다. 들어갈 그룹을 선택하세요.</p>
-            <div id="group-select-list" class="space-y-2"></div>
-            <button onclick="logout()" class="w-full text-gray-500 py-2 hover:underline">로그아웃</button>
-        </div>
-
         <div id="screen-user-start" class="hidden max-w-md w-full mx-auto space-y-4">
             <h2 class="text-2xl font-bold mb-4">서비스 접속</h2>
             <div>
@@ -526,11 +520,10 @@
                     <button id="excel-btn" onclick="downloadExcel()" class="text-xs bg-green-600 text-white px-3 py-2 rounded font-bold hover:bg-green-700 shadow">📥 엑셀 다운로드</button>
                     <button onclick="changeAdminPassword()" class="text-xs bg-gray-600 text-white px-3 py-2 rounded font-bold hover:bg-gray-700 shadow">🔑 관리자 비번</button>
                     <button onclick="changeTeacherPassword()" class="text-xs bg-gray-600 text-white px-3 py-2 rounded font-bold hover:bg-gray-700 shadow">👥 교원 비번</button>
+                    <button onclick="deleteMyGroup()" class="text-xs bg-white text-gray-500 border border-gray-300 px-3 py-2 rounded font-bold hover:bg-red-50 hover:text-red-600 hover:border-red-300">🗑 그룹 삭제</button>
                     <button onclick="logout()" class="text-xs text-red-500 border border-red-500 px-3 py-2 rounded hover:bg-red-50 font-bold">로그아웃</button>
                 </div>
             </div>
-
-            <div id="retention-notice" class="hidden bg-amber-50 border border-amber-200 text-amber-900 rounded-lg p-3 text-sm mb-4"></div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div class="bg-gray-800 text-white p-4 rounded-lg shadow flex flex-col justify-center">
@@ -616,38 +609,6 @@
             <div id="expense-history" class="space-y-2 mt-6"></div>
         </div>
 
-        <div id="screen-super-admin" class="hidden w-full flex-col h-full py-4">
-            <div class="flex justify-between items-center mb-6 border-b pb-3 border-purple-500">
-                <div>
-                    <h2 class="text-2xl font-bold text-purple-800">👑 총괄 시스템 관리</h2>
-                    <p id="super-admin-account" class="text-xs text-gray-500 mt-1"></p>
-                </div>
-                <button onclick="exitSuperAdmin()" class="text-xs text-red-500 border border-red-500 px-3 py-2 rounded hover:bg-red-50 font-bold shrink-0">로그아웃</button>
-            </div>
-            <div class="bg-purple-50 p-4 rounded-lg mb-4 text-sm text-purple-800 border border-purple-200">
-                이곳은 개발자/시스템 총괄 관리자 전용 화면입니다.<br>
-                생성된 모든 학교(그룹) 목록을 확인하거나 <b>그룹을 통째로 강제 삭제</b>할 수 있습니다.<br>
-                <span class="text-xs">※ 허용된 구글 계정으로만 들어올 수 있습니다. 그룹 접속 비밀번호는 암호화되어 저장되므로 이곳에서도 확인할 수 없지만, 교원 개인의 '본인 확인용 비밀번호'는 평문으로 저장되니 취급에 유의하세요.</span>
-                <div class="mt-3 pt-3 border-t border-purple-200 text-xs leading-relaxed">
-                    <b>🔑 그룹을 삭제한 뒤에는</b> 아래 표시된 계정 두 개가 로그인 정보에 그대로 남습니다.
-                    (그룹명에서 만들어진 가상 주소이며 실제 메일 주소가 아닙니다.)
-                    같은 그룹명으로 다시 만들려면
-                    <a href="https://console.firebase.google.com/project/training-fee-manager/authentication/users" target="_blank" rel="noopener" class="underline font-bold">Firebase 콘솔 → Authentication → Users</a>에서
-                    해당 계정을 찾아 직접 삭제해 주세요. <b>삭제하기 전에 주소를 복사해 두시면 편합니다.</b>
-                </div>
-            </div>
-            <div id="super-bulk-bar" class="hidden sticky top-0 z-10 bg-white border border-purple-200 rounded-lg p-3 mb-3 flex flex-wrap items-center gap-2 shadow-sm">
-                <label class="flex items-center gap-2 text-sm font-bold text-gray-700 cursor-pointer">
-                    <input type="checkbox" id="super-check-expired" class="w-4 h-4" onclick="selectExpiredGroups(this.checked)">
-                    지난 학년도 전체 선택
-                </label>
-                <span id="super-selected-count" class="text-sm text-gray-500">선택 0개</span>
-                <button onclick="bulkDeleteGroups()" class="ml-auto bg-red-600 text-white px-4 py-2 rounded text-sm font-bold hover:bg-red-700 disabled:opacity-40" id="super-bulk-del">선택한 그룹 삭제</button>
-            </div>
-            <div id="super-admin-list" class="space-y-3">
-                </div>
-        </div>
-
     </div>
 
     <!-- 그룹 생성 완료 안내 카드 -->
@@ -663,15 +624,15 @@
     </div>
 
     <script>
-        // 보안 규칙 원본 (총괄 계정만 끼워 넣어 내보낸다)
-        const RULES_TEMPLATE = "rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n\n    // ── 총괄 관리자 (구글 로그인 계정) ──\n    // ※ index.html의 SUPER_ADMIN_EMAILS와 반드시 동일하게 유지하세요.\n    //\n    //   세 가지 조건을 모두 만족해야 총괄 관리자로 인정합니다.\n    //   1) 허용 목록에 있는 이메일일 것\n    //   2) 구글 로그인(google.com)으로 들어온 계정일 것\n    //   3) 이메일이 인증된 계정일 것\n    //\n    //   ※ 2)번이 특히 중요합니다.\n    //     이메일만 대조하면 총괄 관리자 주소로 계정을 만들어 권한을 가로챌 여지가 있습니다.\n    //     로그인 수단까지 확인해야 그 경로가 확실히 막힙니다.\n    function isSuper() {\n      return request.auth != null\n          && request.auth.token.email in __EMAILS__\n          && request.auth.token.firebase.sign_in_provider == 'google.com'\n          && request.auth.token.email_verified == true;\n    }\n\n    // ── 그룹 소속 판정 ──\n    // 그룹 문서에 저장된 adminUid / teacherUid 와 로그인한 계정을 대조한다.\n    function groupData(groupId) {\n      return get(/databases/$(database)/documents/groups/$(groupId)).data;\n    }\n    function isGroupAdmin(groupId) {\n      return request.auth != null && request.auth.uid == groupData(groupId).adminUid;\n    }\n    function isGroupUser(groupId) {\n      return request.auth != null\n          && (request.auth.uid == groupData(groupId).adminUid\n           || request.auth.uid == groupData(groupId).teacherUid);\n    }\n\n    // ── 명단 문서 수정 허용 범위 ──\n    //  ※ 교원은 모두 하나의 공용 계정을 쓰므로, 규칙이 '누가 본인 문서인지'를 구분할 수 없습니다.\n    //    그래서 문서 단위 대신 '손댈 수 있는 필드'를 좁히는 방식으로 피해를 줄입니다.\n    //  ※ 형식 검사는 '값이 실제로 바뀐 필드'에만 적용합니다.\n    //    그러지 않으면 예전에 저장된 긴 이름 등이 있을 때 정상 사용까지 막힙니다.\n    function memberUpdateAllowed(groupId) {\n      let isAdmin = isGroupAdmin(groupId);\n      let now = request.resource.data;\n      let was = resource.data;\n      return\n          // (1) 정해진 필드 외에는 새로 끼워 넣을 수 없다\n          now.keys().hasOnly(['role', 'name', 'spentAmount', 'isCompleted', 'pin', 'isReturning'])\n\n          // (2) 이름·구분을 고치는 것은 관리자만\n          && (isAdmin || (now.role == was.role && now.name == was.name))\n\n          // (3) PIN은 관리자만 초기화할 수 있고,\n          //     교원은 아직 설정되지 않았을 때 최초 1회만 정할 수 있다\n          //     (이미 설정된 남의 PIN을 바꿔치기하는 것을 막는다)\n          && (now.pin == was.pin || isAdmin || was.pin == null)\n\n          // (4) 값이 바뀐 필드에 대한 형식 검사\n          && (now.role == was.role\n              || (now.role is string && now.role.size() > 0 && now.role.size() <= 30))\n          && (now.name == was.name\n              || (now.name is string && now.name.size() <= 30))\n          && (now.pin == was.pin || now.pin == null\n              || (now.pin is string && now.pin.size() <= 50))\n\n          && now.spentAmount is int && now.spentAmount >= 0 && now.spentAmount <= 10000000\n          && now.isCompleted is bool\n          && now.isReturning is bool;\n    }\n\n    // ── 지출 내역 형식 검증 ──\n    function validExpense(d) {\n      return d.keys().hasOnly(['item', 'amount', 'category', 'date'])\n          && d.item is string && d.item.size() > 0 && d.item.size() <= 100\n          && d.amount is int && d.amount > 0 && d.amount <= 250000\n          && d.category is string && d.category.size() <= 20\n          && d.date is string && d.date.size() <= 40;\n    }\n\n    match /groups/{groupId} {\n\n      // 그룹 비밀번호로 로그인한 사람만 그룹 정보를 읽을 수 있다\n      allow get: if isSuper()\n                 || (request.auth != null\n                     && (request.auth.uid == resource.data.adminUid\n                      || request.auth.uid == resource.data.teacherUid));\n\n      // 전체 그룹 목록 조회는 총괄 관리자만\n      allow list: if isSuper();\n\n      // 그룹 생성: 반드시 로그인 상태여야 하고, 본인 uid를 관리자로 등록해야 한다\n      allow create: if request.auth != null\n                    && request.resource.data.keys()\n                         .hasOnly(['name', 'adminUid', 'teacherUid', 'createdAt'])\n                    && request.resource.data.adminUid == request.auth.uid\n                    && request.resource.data.name is string\n                    && request.resource.data.name.size() > 0\n                    && request.resource.data.name.size() <= 50\n                    // 총괄 화면은 createdAt을 날짜로 가정하므로, 문자열 등이 들어오면\n                    // 목록 전체가 오류로 사라진다. 서버 시각만 허용한다.\n                    && request.resource.data.createdAt is timestamp;\n\n      // 그룹 문서 수정 금지 (비밀번호는 Authentication이 관리하므로 수정할 것이 없다)\n      allow update: if false;\n\n      // 그룹 삭제는 총괄 관리자만\n      allow delete: if isSuper();\n\n      match /members/{memberId} {\n\n        allow read: if isSuper() || isGroupUser(groupId);\n\n        // 명단 추가는 관리자만, 지출액은 반드시 0으로 시작\n        allow create: if isGroupAdmin(groupId)\n                      && request.resource.data.keys()\n                           .hasOnly(['role', 'name', 'spentAmount', 'isCompleted', 'pin', 'isReturning'])\n                      && request.resource.data.role is string\n                      && request.resource.data.role.size() > 0\n                      && request.resource.data.role.size() <= 30\n                      && request.resource.data.spentAmount == 0;\n\n        // 수정은 아래 memberUpdateAllowed() 조건을 만족할 때만\n        allow update: if isGroupUser(groupId) && memberUpdateAllowed(groupId);\n\n        // 지출 내역이 없는 명단만 관리자가 정리 가능\n        allow delete: if isSuper() || (isGroupAdmin(groupId) && resource.data.spentAmount == 0);\n\n        match /expenses/{expenseId} {\n          allow read: if isSuper() || isGroupUser(groupId);\n          allow create: if isGroupUser(groupId) && validExpense(request.resource.data);\n          // 지출 내역은 수정 불가 (변조 차단)\n          allow update: if false;\n          // 삭제는 총괄 관리자의 그룹 일괄 삭제 시에만\n          allow delete: if isSuper();\n        }\n      }\n    }\n  }\n}\n";
+        // 보안 규칙 원본 (설치 마법사가 그대로 복사해 줍니다)
+        const RULES_TEMPLATE = "rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n\n    // ── 그룹 소속 판정 ──\n    // 그룹 문서에 저장된 adminUid / teacherUid 와 로그인한 계정을 대조한다.\n    function groupData(groupId) {\n      return get(/databases/$(database)/documents/groups/$(groupId)).data;\n    }\n    function isGroupAdmin(groupId) {\n      return request.auth != null && request.auth.uid == groupData(groupId).adminUid;\n    }\n    function isGroupUser(groupId) {\n      return request.auth != null\n          && (request.auth.uid == groupData(groupId).adminUid\n           || request.auth.uid == groupData(groupId).teacherUid);\n    }\n\n    // ── 명단 문서 수정 허용 범위 ──\n    //  ※ 교원은 모두 하나의 공용 계정을 쓰므로, 규칙이 '누가 본인 문서인지'를 구분할 수 없습니다.\n    //    그래서 문서 단위 대신 '손댈 수 있는 필드'를 좁히는 방식으로 피해를 줄입니다.\n    //  ※ 형식 검사는 '값이 실제로 바뀐 필드'에만 적용합니다.\n    //    그러지 않으면 예전에 저장된 긴 이름 등이 있을 때 정상 사용까지 막힙니다.\n    function memberUpdateAllowed(groupId) {\n      let isAdmin = isGroupAdmin(groupId);\n      let now = request.resource.data;\n      let was = resource.data;\n      return\n          // (1) 정해진 필드 외에는 새로 끼워 넣을 수 없다\n          now.keys().hasOnly(['role', 'name', 'spentAmount', 'isCompleted', 'pin', 'isReturning'])\n\n          // (2) 이름·구분을 고치는 것은 관리자만\n          && (isAdmin || (now.role == was.role && now.name == was.name))\n\n          // (3) PIN은 관리자만 초기화할 수 있고,\n          //     교원은 아직 설정되지 않았을 때 최초 1회만 정할 수 있다\n          //     (이미 설정된 남의 PIN을 바꿔치기하는 것을 막는다)\n          && (now.pin == was.pin || isAdmin || was.pin == null)\n\n          // (4) 값이 바뀐 필드에 대한 형식 검사\n          && (now.role == was.role\n              || (now.role is string && now.role.size() > 0 && now.role.size() <= 30))\n          && (now.name == was.name\n              || (now.name is string && now.name.size() <= 30))\n          && (now.pin == was.pin || now.pin == null\n              || (now.pin is string && now.pin.size() <= 50))\n\n          && now.spentAmount is int && now.spentAmount >= 0 && now.spentAmount <= 10000000\n          && now.isCompleted is bool\n          && now.isReturning is bool;\n    }\n\n    // ── 지출 내역 형식 검증 ──\n    function validExpense(d) {\n      return d.keys().hasOnly(['item', 'amount', 'category', 'date'])\n          && d.item is string && d.item.size() > 0 && d.item.size() <= 100\n          && d.amount is int && d.amount > 0 && d.amount <= 250000\n          && d.category is string && d.category.size() <= 20\n          && d.date is string && d.date.size() <= 40;\n    }\n\n    match /groups/{groupId} {\n\n      // 그룹명과 비밀번호로 로그인한 사람만 그룹 정보를 읽을 수 있다\n      allow get: if request.auth != null\n                 && (request.auth.uid == resource.data.adminUid\n                  || request.auth.uid == resource.data.teacherUid);\n\n      // 그룹 목록을 통째로 훑는 것은 누구에게도 허용하지 않는다\n      allow list: if false;\n\n      // 그룹 생성: 반드시 로그인 상태여야 하고, 본인 uid를 관리자로 등록해야 한다\n      allow create: if request.auth != null\n                    && request.resource.data.keys()\n                         .hasOnly(['name', 'adminUid', 'teacherUid', 'createdAt'])\n                    && request.resource.data.adminUid == request.auth.uid\n                    && request.resource.data.name is string\n                    && request.resource.data.name.size() > 0\n                    && request.resource.data.name.size() <= 50\n                    && request.resource.data.createdAt is timestamp;\n\n      // 그룹 문서 수정 금지 (비밀번호는 Authentication이 관리하므로 수정할 것이 없다)\n      allow update: if false;\n\n      // 그룹 삭제는 그 그룹의 관리자만\n      //  ※ 학년도가 끝나 자료를 정리할 때 관리자 화면의 [그룹 삭제]가 이 권한을 씁니다.\n      allow delete: if isGroupAdmin(groupId);\n\n      match /members/{memberId} {\n\n        allow read: if isGroupUser(groupId);\n\n        // 명단 추가는 관리자만, 지출액은 반드시 0으로 시작\n        allow create: if isGroupAdmin(groupId)\n                      && request.resource.data.keys()\n                           .hasOnly(['role', 'name', 'spentAmount', 'isCompleted', 'pin', 'isReturning'])\n                      && request.resource.data.role is string\n                      && request.resource.data.role.size() > 0\n                      && request.resource.data.role.size() <= 30\n                      && request.resource.data.spentAmount == 0;\n\n        // 수정은 아래 memberUpdateAllowed() 조건을 만족할 때만\n        allow update: if isGroupUser(groupId) && memberUpdateAllowed(groupId);\n\n        // 명단 삭제는 관리자만\n        //  ※ 화면에서는 '지출 내역이 없는 명단'만 지울 수 있게 막아 두었고,\n        //    그룹 전체를 정리할 때만 이 권한을 그대로 씁니다.\n        allow delete: if isGroupAdmin(groupId);\n\n        match /expenses/{expenseId} {\n          allow read: if isGroupUser(groupId);\n          allow create: if isGroupUser(groupId) && validExpense(request.resource.data);\n          // 지출 내역은 수정 불가 (변조 차단)\n          allow update: if false;\n          // 삭제는 관리자가 그룹을 통째로 정리할 때만\n          allow delete: if isGroupAdmin(groupId);\n        }\n      }\n    }\n  }\n}\n";
 
         // 설치 마법사가 '설정을 끝낸 파일'을 만들 때 쓰는 원본.
         // 화면이 바뀌기 전에 먼저 담아 둔다. (반드시 이 자리에 있어야 한다)
         const ORIGINAL_HTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
 
         /* ══════════════════════════════════════════════════════════════
-           설정 ①  우리 학교 Firebase 연결
+           우리 학교 Firebase 연결
 
            직접 고치지 않으셔도 됩니다.
            이 파일을 브라우저로 열면 설치 안내가 나오고,
@@ -746,28 +707,6 @@
             }
         }
 
-        // 🔹 총괄 관리자 계정 (구글 로그인 허용 목록)
-        //    ※ 여기에 적은 구글 계정만 총괄 관리 화면에 들어올 수 있습니다.
-        //    ※ 관리자를 추가하려면 아래 배열에 이메일을 따옴표로 감싸 쉼표로 이어 적으세요.
-        //    ※ 이 목록은 화면 진입을 막는 1차 잠금일 뿐입니다.
-        //       실제 데이터 보호는 반드시 Firebase 보안 규칙에도 같은 이메일을 등록해야 합니다.
-        /* ══════════════════════════════════════════════════════════════
-           설정 ②  총괄 관리자 구글 계정
-           학교 전체 그룹을 보고 지울 수 있는 계정입니다.
-           설치 마법사에서 함께 입력하시면 됩니다.
-           ══════════════════════════════════════════════════════════════ */
-        const SUPER_ADMIN_EMAILS = [
-            "설치-마법사에서-입력하세요"
-        ];
-
-        // 로그인한 구글 계정이 총괄 관리자인지 확인
-        function isSuperAdmin(user) {
-            if (!user || !user.email) return false;
-            return SUPER_ADMIN_EMAILS
-                .map(e => e.trim().toLowerCase())
-                .includes(user.email.trim().toLowerCase());
-        }
-
         // 탭이 살아 있는 동안만 로그인 유지 (새로고침·뒤로가기에도 세션 유지, 탭을 닫으면 자동 로그아웃)
         if (!NEEDS_SETUP) firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
 
@@ -787,262 +726,9 @@
             location.href = location.pathname;
         }
 
-        // 🔹 숨겨진 이스터에그 로직 (총괄 관리자 진입)
-        let triggerCount = 0;
-        let triggerTimeout;
-        document.getElementById('super-admin-trigger').addEventListener('click', () => {
-            triggerCount++;
-            clearTimeout(triggerTimeout);
-            triggerTimeout = setTimeout(() => { triggerCount = 0; }, 2000); // 2초 안에 연속 클릭해야 함
-
-            if(triggerCount >= 5) {
-                triggerCount = 0;
-                enterSuperAdmin();
-            }
-        });
-
-        // 🔹 총괄 관리자 인증 (구글 로그인)
-        const SUPER_REDIRECT_KEY = 'tfm-super-redirect';
-
-        async function enterSuperAdmin() {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            provider.setCustomParameters({ prompt: 'select_account' });  // 계정 선택창을 항상 표시
-
-            try {
-                const result = await firebase.auth().signInWithPopup(provider);
-                await finishSuperAdminLogin(result.user);
-            } catch (e) {
-                // 팝업이 차단된 환경(주로 모바일 브라우저)에서는 리디렉션 방식으로 전환
-                if (e.code === 'auth/popup-blocked' ||
-                    e.code === 'auth/operation-not-supported-in-this-environment') {
-                    try {
-                        sessionStorage.setItem(SUPER_REDIRECT_KEY, '1');
-                    } catch (err) {}
-                    await firebase.auth().signInWithRedirect(provider);
-                    return;
-                }
-                // 사용자가 스스로 창을 닫은 경우에는 아무 안내도 하지 않는다
-                if (e.code === 'auth/popup-closed-by-user' ||
-                    e.code === 'auth/cancelled-popup-request') return;
-
-                alert('구글 로그인에 실패했습니다.\n' + authErrorMessage(e));
-            }
-        }
-
-        // 로그인한 계정이 허용 목록에 있는지 확인한 뒤 총괄 화면으로 이동
-        async function finishSuperAdminLogin(user) {
-            if (!isSuperAdmin(user)) {
-                const email = (user && user.email) ? user.email : '알 수 없는 계정';
-                await firebase.auth().signOut();
-                clearSession();
-                alert(`총괄 관리자로 등록되지 않은 계정입니다.\n\n로그인한 계정: ${email}`);
-                return;
-            }
-            saveSession('super', '');
-            loadSuperAdmin();
-        }
-
-        // 🔹 총괄 관리자 화면 나가기 (반드시 로그아웃 후 새로고침)
-        async function exitSuperAdmin() {
-            await logout();
-        }
-
-        // 🔹 총괄 관리자 데이터 로드
-        // ── 학년도 계산 (3월 시작 ~ 다음 해 2월 종료) ──
-        // 2026년 8월 생성 → 2026학년도 → 2027년 3월 1일부터 '지난 학년도'
-        function academicYearOf(date) {
-            return date.getMonth() + 1 >= 3 ? date.getFullYear() : date.getFullYear() - 1;
-        }
-        function expiryDateOf(date) {
-            return new Date(academicYearOf(date) + 1, 2, 1); // 다음 학년도 3월 1일
-        }
-        function isExpiredGroup(date) {
-            return new Date() >= expiryDateOf(date);
-        }
-
-        async function loadSuperAdmin() {
-            showScreen('screen-super-admin');
-
-            // 현재 로그인한 구글 계정을 화면에 표시
-            const acct = document.getElementById('super-admin-account');
-            const me = firebase.auth().currentUser;
-            if (acct) acct.innerText = me && me.email ? `구글 계정: ${me.email}` : '';
-
-            const listDiv = document.getElementById('super-admin-list');
-            const bulkBar = document.getElementById('super-bulk-bar');
-            listDiv.innerHTML = '<div class="text-center py-10 text-gray-500">데이터를 불러오는 중...</div>';
-            bulkBar.classList.add('hidden');
-
-            try {
-                const snapshot = await db.collection('groups').get();
-                listDiv.innerHTML = '';
-                if(snapshot.empty) return listDiv.innerHTML = '<div class="text-center py-10 text-gray-500">생성된 그룹이 없습니다.</div>';
-
-                const expired = [], current = [];
-                const pending = [];
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    const created = data.createdAt ? data.createdAt.toDate() : new Date();
-                    const item = {
-                        id: doc.id, name: data.name, created: created, year: academicYearOf(created),
-                        adminEmail: '', teacherEmail: ''   // 그룹명에서 계산되므로 아래에서 채운다
-                    };
-                    pending.push(groupEmails(doc.id).then(e => {
-                        item.adminEmail = e.admin; item.teacherEmail = e.teacher;
-                    }));
-                    (isExpiredGroup(created) ? expired : current).push(item);
-                });
-                await Promise.all(pending);
-                const byYear = (a, b) => (a.year - b.year) || a.name.localeCompare(b.name, 'ko');
-                expired.sort(byYear);
-                current.sort(byYear);
-
-                document.getElementById('super-check-expired').checked = false;
-                bulkBar.classList.remove('hidden');
-
-                renderGroupSection(listDiv, '지난 학년도 그룹', expired, true);
-                renderGroupSection(listDiv, '현재 학년도 그룹', current, false);
-                updateSelectedCount();
-            } catch(e) {
-                listDiv.innerHTML = `<div class="text-red-500 text-center">오류 발생: ${e.message}</div>`;
-            }
-        }
-
-        function renderGroupSection(listDiv, title, groups, isExpired) {
-            const header = document.createElement('div');
-            header.className = 'flex items-center gap-2 mt-5 mb-2';
-            header.innerHTML = `
-                <h3 class="font-bold ${isExpired ? 'text-red-700' : 'text-gray-700'}">${title}</h3>
-                <span class="text-xs ${isExpired ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-bold">${groups.length}개</span>
-            `;
-            listDiv.appendChild(header);
-
-            if (groups.length === 0) {
-                const empty = document.createElement('div');
-                empty.className = 'text-sm text-gray-400 py-3';
-                empty.innerText = '해당하는 그룹이 없습니다.';
-                listDiv.appendChild(empty);
-                return;
-            }
-
-            groups.forEach(g => {
-                const div = document.createElement('div');
-                div.className = `bg-white p-4 rounded-lg shadow-sm border ${isExpired ? 'border-red-200' : 'border-gray-200'} flex items-center gap-3`;
-                // ※ 그룹명은 외부에서 들어온 값이므로 절대 innerHTML로 넣지 않는다.
-                //   (조작된 그룹명이 총괄 관리자 권한으로 실행되는 것을 막는다)
-                div.innerHTML = `
-                    <input type="checkbox" class="group-check w-4 h-4 shrink-0 mt-1" data-expired="${isExpired ? '1' : '0'}">
-                    <div class="flex flex-col flex-1 min-w-0">
-                        <span class="font-bold text-lg text-gray-800 truncate" data-role="gname"></span>
-                        <span class="text-xs text-gray-500 mt-1" data-role="gmeta"></span>
-                        <div class="acct-box" data-role="gacct"></div>
-                    </div>
-                    <button class="bg-red-50 text-red-600 border border-red-200 px-3 py-2 rounded text-sm font-bold hover:bg-red-100 transition-colors shrink-0" data-role="gdel">삭제</button>
-                `;
-                const chk = div.querySelector('.group-check');
-                chk.dataset.id = g.id;
-                chk.dataset.name = g.name;
-                div.querySelector('[data-role="gname"]').textContent = g.name;
-                div.querySelector('[data-role="gmeta"]').textContent =
-                    `${g.year}학년도 · 생성일 ${g.created.toLocaleDateString('ko-KR')}`;
-
-                // 그룹을 지운 뒤 남는 계정 두 개를 함께 보여 준다
-                const acct = div.querySelector('[data-role="gacct"]');
-                acct.appendChild(accountRow('관리자 계정', g.adminEmail, ''));
-                acct.appendChild(accountRow('교원 계정', g.teacherEmail, ''));
-
-                div.querySelector('[data-role="gdel"]').onclick = () => superDeleteGroup(g.id, g.name);
-                listDiv.appendChild(div);
-                chk.addEventListener('change', updateSelectedCount);
-            });
-        }
-
-        // 총괄 화면에서 계정 주소 한 줄을 그린다 (주소는 반드시 textContent로 넣는다)
-        function accountRow(label, email, emptyMsg) {
-            const row = document.createElement('div');
-            row.className = 'acct-row';
-
-            const tag = document.createElement('span');
-            tag.className = 'acct-tag';
-            tag.textContent = label;
-            row.appendChild(tag);
-
-            const val = document.createElement('span');
-            if (email) {
-                val.className = 'acct-mail';
-                val.textContent = email;
-            } else {
-                val.className = 'acct-none';
-                val.textContent = emptyMsg;
-            }
-            row.appendChild(val);
-
-            if (email) {
-                const btn = document.createElement('button');
-                btn.className = 'acct-copy';
-                btn.textContent = '복사';
-                btn.onclick = async (e) => {
-                    e.stopPropagation();
-                    try {
-                        await navigator.clipboard.writeText(email);
-                        btn.textContent = '복사됨';
-                    } catch (_) {
-                        btn.textContent = '복사 실패';
-                    }
-                    setTimeout(() => { btn.textContent = '복사'; }, 1200);
-                };
-                row.appendChild(btn);
-            }
-            return row;
-        }
-
-        function updateSelectedCount() {
-            const n = document.querySelectorAll('.group-check:checked').length;
-            document.getElementById('super-selected-count').innerText = `선택 ${n}개`;
-            document.getElementById('super-bulk-del').disabled = (n === 0);
-        }
-
-        function selectExpiredGroups(checked) {
-            document.querySelectorAll('.group-check[data-expired="1"]').forEach(cb => { cb.checked = checked; });
-            updateSelectedCount();
-        }
-
-        // 🔹 총괄 관리자: 선택한 그룹 일괄 삭제
-        async function bulkDeleteGroups() {
-            const checked = Array.from(document.querySelectorAll('.group-check:checked'));
-            if (checked.length === 0) return;
-
-            const names = checked.map(cb => cb.dataset.name);
-            const preview = names.slice(0, 10).join('\n') + (names.length > 10 ? `\n… 외 ${names.length - 10}개` : '');
-            const word = prompt(`선택한 ${names.length}개 그룹과 모든 지출 내역을 삭제합니다.\n이 작업은 복구할 수 없습니다.\n\n${preview}\n\n진행하려면 '삭제' 라고 입력해주세요.`);
-            if (word !== '삭제') return;
-
-            const bar = document.getElementById('super-selected-count');
-            let done = 0, failed = [];
-            for (const cb of checked) {
-                bar.innerText = `삭제 중… (${done + 1}/${checked.length})`;
-                const ok = await deleteGroupData(cb.dataset.id);
-                if (ok) done++; else failed.push(cb.dataset.name);
-            }
-
-            alert(failed.length === 0
-                ? `${done}개 그룹을 삭제했습니다.`
-                : `${done}개 삭제 완료.\n실패: ${failed.join(', ')}`);
-            loadSuperAdmin();
-        }
-
-        // 🔹 총괄 관리자: 특정 그룹 강제 일괄 삭제
-        async function superDeleteGroup(groupId, groupName) {
-            const confirmWord = prompt(`정말로 [${groupName}] 그룹과 모든 선생님들의 데이터를 삭제하시겠습니까?\n이 작업은 복구할 수 없습니다.\n\n진행하시려면 '삭제' 라고 입력해주세요.`);
-            if(confirmWord !== '삭제') return;
-
-            alert('삭제를 시작합니다. 데이터 양에 따라 수 초가 걸릴 수 있습니다.');
-            const ok = await deleteGroupData(groupId);
-            alert(ok ? `[${groupName}] 그룹이 완전히 삭제되었습니다.` : `[${groupName}] 삭제 중 오류가 발생했습니다.`);
-            loadSuperAdmin();
-        }
-
-        // 그룹 하나를 통째로 삭제 (지출 내역 → 명단 → 그룹 순)
+        // 🔹 그룹 하나를 통째로 삭제 (지출 내역 → 명단 → 그룹 순)
+        //    ※ 그룹 문서를 마지막에 지워야 한다. 먼저 지우면 관리자 판정이 풀려
+        //      남은 명단·지출 내역을 지울 수 없게 된다.
         async function deleteGroupData(groupId) {
             try {
                 const groupRef = db.collection('groups').doc(groupId);
@@ -1065,6 +751,30 @@
                 console.error('그룹 삭제 실패:', groupId, e);
                 return false;
             }
+        }
+
+        // 🔹 관리자가 자기 그룹을 통째로 정리한다 (학년도 마무리용)
+        async function deleteMyGroup() {
+            const name = document.getElementById('admin-display-group-name')
+                             .innerText.replace(/\s*\(관리자\)\s*$/, '');
+            if (!confirm(
+                '[' + name + '] 그룹의 명단과 모든 지출 내역을 지웁니다.\n' +
+                '되돌릴 수 없습니다.\n\n' +
+                '먼저 [📥 엑셀 다운로드]로 자료를 보관하셨나요?')) return;
+
+            const typed = prompt('확인을 위해 그룹명을 그대로 입력해 주세요.\n\n' + name);
+            if (typed === null) return;
+            if (typed.trim() !== name) return alert('그룹명이 일치하지 않아 취소했습니다.');
+
+            alert('삭제를 시작합니다. 자료 양에 따라 수 초가 걸릴 수 있습니다.');
+            const ok = await deleteGroupData(currentGroupId);
+            if (!ok) return alert('삭제 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+
+            alert('그룹을 삭제했습니다.\n\n' +
+                  '※ 접속 계정(그룹명에서 만들어진 가상 주소)은 Firebase에 남습니다.\n' +
+                  '   완전히 정리하려면 Firebase 콘솔 → Authentication → Users 에서\n' +
+                  '   해당 계정을 지우거나, 프로젝트 자체를 삭제하시면 됩니다.');
+            await logout();
         }
 
         // 명단 기본 순서 (교장 → 교감 → 학년반(학년/반 숫자순) → 교담 → 특수 → 보건 → 영양 → 상담 → 기타)
@@ -1105,7 +815,7 @@
         }
 
         // 로그인이 필요한 화면 (뒤로가기로 되돌아왔을 때 인증 여부를 다시 확인한다)
-        const PROTECTED_SCREENS = ['screen-admin-dashboard', 'screen-user-dashboard', 'screen-member-form', 'screen-super-admin', 'screen-group-select'];
+        const PROTECTED_SCREENS = ['screen-admin-dashboard', 'screen-user-dashboard', 'screen-member-form'];
 
         function showScreen(screenId, fromHistory = false) {
             document.querySelectorAll('#app > div').forEach(div => div.classList.add('hidden'));
@@ -1229,7 +939,7 @@
                 });
                 await batch.commit();
 
-                enterAdminGroup(groupId, name, new Date());
+                enterAdminGroup(groupId, name);
                 openCreatedModal(name, teacherPw);
             } catch (e) {
                 if (e && e.code === 'permission-denied') {
@@ -1248,33 +958,13 @@
         }
 
         // 관리자 화면 진입 (공통)
-        function enterAdminGroup(groupId, name, createdAt) {
+        function enterAdminGroup(groupId, name) {
             currentGroupId = groupId;
             saveSession('admin', groupId);
             dashboardScreen = 'screen-admin-dashboard';
             document.getElementById('admin-display-group-name').innerText = name + ' (관리자)';
-            showRetentionNotice(createdAt);
             loadAdminDashboard();
             showScreen('screen-admin-dashboard');
-        }
-
-        // 학년도 종료 후 삭제된다는 안내
-        function showRetentionNotice(createdAt) {
-            const box = document.getElementById('retention-notice');
-
-            box.className = 'hidden bg-amber-50 border border-amber-200 text-amber-900 rounded-lg p-3 text-sm mb-4';
-            if (!createdAt) { box.classList.add('hidden'); return; }
-
-            const year = academicYearOf(createdAt);
-            const expiry = expiryDateOf(createdAt);
-            const expired = new Date() >= expiry;
-
-            box.innerHTML = expired
-                ? `<b>\u26a0\ufe0f ${year}학년도 그룹입니다.</b> 학년도가 종료되어 <b>언제든 삭제될 수 있습니다.</b>
-                   아직 내려받지 않으셨다면 지금 바로 <b>엑셀 다운로드</b>로 자료를 보관해 주세요.`
-                : `<b>\ud83d\udcc5 ${year}학년도 그룹입니다.</b> 이 그룹의 자료는 <b>${expiry.getFullYear()}년 3월</b> 이후 지난 학년도로 분류되어 삭제될 수 있습니다.
-                   학년도가 끝나기 전에 <b>엑셀 다운로드</b>로 자료를 보관해 주세요.`;
-            box.classList.remove('hidden');
         }
 
         // ── 그룹 생성 완료 안내 카드 ──
@@ -1378,8 +1068,7 @@
                     await logout();
                     return alert('그룹을 찾을 수 없습니다.\n그룹명을 다시 확인해 주세요.');
                 }
-                enterAdminGroup(groupId, doc.data().name,
-                    doc.data().createdAt ? doc.data().createdAt.toDate() : null);
+                enterAdminGroup(groupId, doc.data().name);
             } catch (e) {
                 if (e && (e.code === 'auth/user-not-found' || e.code === 'auth/invalid-credential'
                           || e.code === 'auth/wrong-password')) {
@@ -1851,23 +1540,12 @@
             try { saved = JSON.parse(raw); } catch (e) { return false; }
 
             try {
-                if (saved.role === 'super') {
-                    // 새로고침 후에도 허용 목록에 있는 구글 계정인지 다시 확인한다
-                    if (!isSuperAdmin(firebase.auth().currentUser)) {
-                        clearSession();
-                        return false;
-                    }
-                    loadSuperAdmin();
-                    return true;
-                }
-
                 const doc = await db.collection('groups').doc(saved.groupId).get();
                 if (!doc.exists) return false;
 
                 currentGroupId = saved.groupId;
                 if (saved.role === 'admin') {
-                    enterAdminGroup(saved.groupId, doc.data().name,
-                        doc.data().createdAt ? doc.data().createdAt.toDate() : null);
+                    enterAdminGroup(saved.groupId, doc.data().name);
                 } else {
                     dashboardScreen = 'screen-user-dashboard';
                     document.getElementById('display-group-name').innerText = doc.data().name;
@@ -1886,22 +1564,6 @@
         async function startupHandler(user) {
             if (sessionChecked) return;   // 최초 1회만 복원 (비밀번호 변경 등으로 재로그인할 때는 무시)
             sessionChecked = true;
-
-            // 구글 로그인을 리디렉션 방식으로 진행한 경우, 돌아온 직후 여기서 마무리한다
-            let redirectPending = false;
-            try { redirectPending = sessionStorage.getItem(SUPER_REDIRECT_KEY) === '1'; } catch (e) {}
-            if (redirectPending) {
-                try { sessionStorage.removeItem(SUPER_REDIRECT_KEY); } catch (e) {}
-                try {
-                    const result = await firebase.auth().getRedirectResult();
-                    if (result && result.user) {
-                        await finishSuperAdminLogin(result.user);
-                        return;
-                    }
-                } catch (e) {
-                    alert('구글 로그인에 실패했습니다.\n' + authErrorMessage(e));
-                }
-            }
 
             if (user && await restoreSession()) return;
 
@@ -1922,7 +1584,7 @@
         /* ══════════════════════════════════════════════════════════════
            설치 마법사
            ══════════════════════════════════════════════════════════════ */
-        let SETUP = null;   // 확인을 마친 { config, emails }
+        let SETUP = null;   // 확인을 마친 { config }
 
         function suMsg(kind, text) {
             const el = document.getElementById('su-msg');
@@ -1962,23 +1624,12 @@
             return out;
         }
 
-        function parseEmails(raw) {
-            const list = String(raw || '').split(/[,\s]+/)
-                .map(function (e) { return e.trim().toLowerCase(); })
-                .filter(Boolean);
-            if (!list.length) throw new Error('총괄 관리자 구글 계정을 적어 주세요.');
-            const bad = list.filter(function (e) { return !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e); });
-            if (bad.length) throw new Error('주소 형식이 올바르지 않습니다: ' + bad.join(', '));
-            return list;
-        }
-
         /** 설정 확인 — 형식을 보고, 실제로 Firestore 에 닿는지까지 시험한다 */
         async function setupCheck() {
             suMsg('', '');
-            let config, emails;
+            let config;
             try {
                 config = parseConfig(document.getElementById('su-config').value);
-                emails = parseEmails(document.getElementById('su-emails').value);
             } catch (e) { return suMsg('bad', '⚠️ ' + e.message); }
 
             suMsg('good', '연결을 확인하는 중입니다…');
@@ -2009,7 +1660,7 @@
                 return suMsg('bad', '⚠️ ' + m);
             }
 
-            SETUP = { config: config, emails: emails };
+            SETUP = { config: config };
             suMsg('good', '✅ 우리 학교 Firebase 와 연결되었습니다. 아래 단계를 이어서 진행해 주세요.');
 
             const pid = encodeURIComponent(config.projectId);
@@ -2021,10 +1672,9 @@
             document.getElementById('su-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        /** 총괄 계정을 끼워 넣은 보안 규칙을 만든다 */
+        /** 붙여넣을 보안 규칙 (학교마다 다른 값이 없어 그대로 쓴다) */
         function buildRules() {
-            const list = SETUP.emails.map(function (e) { return "'" + e + "'"; }).join(',\n                                         ');
-            return RULES_TEMPLATE.replace('__EMAILS__', '[' + list + ']');
+            return RULES_TEMPLATE;
         }
 
         async function copyRules() {
@@ -2055,21 +1705,17 @@
             // 앞의 줄바꿈+들여쓰기까지 포함해 바꿔야, 안내 문구 속의 같은 낱말과 헷갈리지 않는다
             const cfgText = '\n        const firebaseConfig = ' +
                 JSON.stringify(SETUP.config, null, 4).replace(/\n/g, '\n        ') + ';';
-            const emailText = '\n        const SUPER_ADMIN_EMAILS = ' +
-                JSON.stringify(SETUP.emails, null, 4).replace(/\n/g, '\n        ') + ';';
 
             let out = ORIGINAL_HTML;
             const reCfg = /\n        const firebaseConfig = \{[\s\S]*?\n        \};/;
-            const reMail = /\n        const SUPER_ADMIN_EMAILS = \[[\s\S]*?\n        \];/;
-            if (!reCfg.test(out) || !reMail.test(out)) {
+            if (!reCfg.test(out)) {
                 return alert('파일을 만들지 못했습니다.\n내려받은 원본 파일을 고치지 말고 그대로 열어 주세요.');
             }
             out = out.replace(reCfg, function () { return cfgText; });
-            out = out.replace(reMail, function () { return emailText; });
 
             // 값이 실제로 들어갔는지 확인한다
             // (안내 문구에도 같은 낱말이 있으므로, 넣은 값이 보이는지로 판단한다)
-            if (out.indexOf(SETUP.config.apiKey) < 0 || out.indexOf(SETUP.emails[0]) < 0) {
+            if (out.indexOf(SETUP.config.apiKey) < 0) {
                 return alert('설정이 다 들어가지 않았습니다.\n원본 파일을 다시 내려받아 시도해 주세요.');
             }
             saveFile('index.html', out, 'text/html');
